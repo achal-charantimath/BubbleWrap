@@ -1,0 +1,143 @@
+
+import static java.lang.System.exit;
+import java.util.Hashtable;
+import java.util.Scanner;
+
+public class mainBank {
+    
+    public static void main(String args[]){
+        int ch;
+        Scanner obj=new Scanner(System.in);
+        Hashtable<String,Accounts>Acc=new Hashtable<String,Accounts>();
+        Hashtable<String,Customers>Cust=new Hashtable<String,Customers>();
+        String temp_Id,temp_Name,temp_Add,temp_Gen,temp_Ac;
+        int temp_Age;
+        
+        for(;;){
+            
+            System.out.println("\n1.Create account\n2.Account information(Balance)\n3.Create customer\n"
+                    + "4.Customer information\n5.Deposit\n6.Withdraw\n7.Exit");
+            System.out.println("\nEnter your choice");
+                ch=(int)obj.nextInt();
+                        switch(ch){
+                            case 1:
+
+                                System.out.println("\nEnter the account number");
+                                Scanner acno=new Scanner(System.in);
+                                String temp = acno.nextLine();
+                                //System.out.println(temp);
+                                if(Acc.get(temp)==null){
+                                   Acc.put(temp,new Accounts(temp)); 
+                                   System.out.println("\nAccount created successfully!!");
+                                }
+                                else{
+                                    System.out.println("\nThe account is already existing");
+                                }
+
+                                break;
+
+                            case 2:
+                                System.out.println("\nEnter the account number");
+                                Scanner disp =new Scanner(System.in);               
+                                String temp2= disp.nextLine();
+                                if(Acc.get(temp2)==null)
+                                {
+                                    System.out.println("\nThe account does not exist");
+                                    break;
+                                }
+                                System.out.println(Acc.get(temp2));
+                                break;
+
+                            case 3:
+
+                                Scanner create=new Scanner(System.in);
+                                System.out.println("\nEnter the Customer id");
+                                temp_Id=create.nextLine();
+                                    if(Cust.get(temp_Id)==null){
+                                            
+                                        System.out.println("Enter the Customer Name");
+                                        temp_Name=create.nextLine();
+                                        System.out.println("Enter the Customer Address");
+                                        temp_Add=create.nextLine();
+                                        System.out.println("Enter the Customer Gender");
+                                        temp_Gen=create.nextLine();
+                                        System.out.println("Enter the Customer Age");
+                                        temp_Age=create.nextInt();                                          
+                                        Scanner id=new Scanner(System.in);
+                                        System.out.println("Enter the Customer Account number");
+                                        temp_Ac=id.nextLine();
+                                                if(Acc.get(temp_Ac)==null){
+                                                    System.out.println("\nThe account does not exist");
+                                                    break;
+                                                }
+                                                else{                                                                                 
+                                                Cust.put(temp_Id,new Customers(temp_Id,temp_Name,
+                                                        temp_Add,temp_Age,temp_Gen,temp_Ac));  
+                                                System.out.println("\nThe customer created successfully!!");
+                                                }
+                                        }//end of if
+                                        else
+                                        {
+                                            System.out.println("The Customer id already exists");
+                                        }
+                                        break;
+                            case 4:
+                                Scanner disp_c=new Scanner(System.in);
+                                System.out.println("\nEnter the customer id");
+                                temp_Id=disp_c.nextLine();
+                                if(Cust.get(temp_Id)==null)
+                                {
+                                    System.out.println("\nThe customer does not exist");
+                                }
+                                else 
+                                {
+                                    System.out.println(Cust.get(temp_Id));
+                                }
+                                break;
+                            case 5:
+                                double Dep;
+                                String Depositer;
+                                System.out.println("Enter the account number");
+                                Scanner dep=new Scanner(System.in);
+                                Depositer=dep.nextLine();
+                                if(Acc.get(Depositer)!=null){
+                                    System.out.println("Enter the amount");
+                                    Dep=dep.nextDouble();
+                                    Acc.get(Depositer).deposit(Dep);                             
+                                }
+                                else{
+                                    System.out.println("The account does not exist");
+                                }
+                                break;
+                       
+                            case 6:
+                                //int count;
+                                String Withdrawer;
+                                System.out.println("\nEnter the account number");
+                                Scanner wid=new Scanner(System.in); 
+                                Withdrawer=wid.nextLine();
+                                if(Acc.get(Withdrawer)!=null){
+                                    Acc.get(Withdrawer).withdraw();                                            
+                                }
+                                else{
+                                    System.out.println("\nThe account does not exist");
+                                }
+                                break;
+                                
+                            case 7:
+                                exit(0);
+
+                            default:
+                                System.out.println("Enter valid choice");
+                                break;
+
+
+                        
+            }//end of switch        
+        }//end of for   
+    }//end of main
+}//end of class
+    
+    
+    
+
