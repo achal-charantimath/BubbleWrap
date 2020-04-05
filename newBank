@@ -1,0 +1,58 @@
+import static java.lang.System.exit;
+import java.util.*;
+
+public class Accounts {
+    String Acc_no;
+    double Bal;
+        Accounts(String acc){
+            Acc_no=acc; 
+            Bal=0;
+        }
+     
+    void deposit(double Depo){
+            if(Depo>0){
+                Bal=Bal+Depo;
+                System.out.println("\nAmount deposited successfully and the"
+                            + "current balance is"+" Rs."+Bal);
+            }
+            else{
+                System.out.println("invalid amount");
+            }
+                
+        }   
+    
+    
+        void withdraw(){
+            double W_draw;
+            System.out.println("Enter the amount to be withdrawn");
+            Scanner wid=new Scanner(System.in);
+            W_draw=wid.nextDouble();
+                if(Bal>500){
+                        if(W_draw>Bal){
+                            System.out.println("Insufficient funds");
+                        }
+                        else if((Bal-W_draw)<500)
+                        {
+                            System.out.println("The amount cannot be withdrawn,Balance would be less than 500");
+                        }
+                        else
+                        {
+                            Bal=Bal-W_draw;
+                            System.out.println("\nThe amount withdrawn successfullay"
+                            + "and the current balance is"+" Rs."+Bal);
+                        }
+                }
+                else{
+                    System.out.println("The Balance is insufficent");
+                }
+            }
+    
+        @Override
+        public String toString(){
+            return "\nAccount details\nAccount number: "+Acc_no+"\nBalance is: "+Bal+"\n";
+        }
+    
+}
+
+
+   
