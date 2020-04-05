@@ -1,0 +1,29 @@
+import java.util.*;
+import static java.lang.System.exit;
+
+public class Customers {
+    String Cust_id;
+    String Cust_name;
+    String Cust_address;
+    int Cust_age;
+    String Cust_gender;
+    String Cust_account;
+
+        Customers(String id,String name,String address,int age,String gender,String account){
+           Cust_id=id;
+           Cust_name=name;
+           Cust_address=address;
+           Cust_age=age;
+           Cust_gender=gender;
+           Cust_account=account;
+        }
+        @Override
+        public String toString(){
+            return "\nCust_id:"+Cust_id+"\nCust_name:"+Cust_name+"\nAddress:"+Cust_address+
+                    "\nAge:"+Cust_age+"\nGender:"+Cust_gender+"\nAccounts:"+Cust_account;
+
+        }    
+        
+    
+}
+
